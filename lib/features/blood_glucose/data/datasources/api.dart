@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:una_health_challenge/features/blood_glucose/data/models/blood_glucose_sample_model.dart';
+import 'package:una_health_challenge/features/blood_glucose/domain/entities/blodd_glucose_sample.dart';
 import 'package:una_health_challenge/features/blood_glucose/domain/repositories/blood_glucose_repository.dart';
 
 class BloodGlucoseRemoteDataSourceImpl implements BloodGlucoseRepository {
@@ -10,7 +11,7 @@ class BloodGlucoseRemoteDataSourceImpl implements BloodGlucoseRepository {
   BloodGlucoseRemoteDataSourceImpl({required this.client});
 
   @override
-  Future<List<BloodGlucoseSampleModel>> getBloodGlucoseSamples() async {
+  Future<List<BloodGlucoseSampleModel>> getBloodGlucoseSamplesModels() async {
     final List<ConnectivityResult> connectivityResult =
         await (Connectivity().checkConnectivity());
 
@@ -37,5 +38,17 @@ class BloodGlucoseRemoteDataSourceImpl implements BloodGlucoseRepository {
     } catch (e) {
       throw Exception('Error fetching data: $e');
     }
+  }
+
+  @override
+  Future<List<BloodGlucoseSample>> getBloodGlucoseSamples() async {
+    final models = await getBloodGlucoseSamplesModels();
+    return models.map((model) {
+      return BloodGlucoseSample(
+        value: model.value,
+        timestamp: model.timestamp,
+        unit: model.unit,
+      );
+    }).toList();
   }
 }

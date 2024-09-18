@@ -1,16 +1,23 @@
-# una_health_challenge
+# Blood Glucose App
 
-A new Flutter project.
+## How to Run
 
-## Getting Started
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `flutter pub get` to install dependencies.
+4. Run `flutter run` to start the app.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Displays blood glucose levels over time.
+- Filters data based on selected dates.
+- Shows minimum, maximum, average, and median values.
+- Plots average and median lines on the chart.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Project Structure
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The project follows the Clean Architecture pattern, separating concerns into different layers:
+
+- **Presentation Layer**: UI code and widgets.
+- **Domain Layer**: Business logic, entities, and use cases.
+- **Data Layer**: Data models, data sources, and repository implementations.

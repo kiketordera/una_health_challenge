@@ -1,4 +1,4 @@
-import 'package:una_health_challenge/features/blood_glucose/data/models/blood_glucose_sample_model.dart';
+import 'package:una_health_challenge/features/blood_glucose/domain/entities/blodd_glucose_sample.dart';
 import 'package:una_health_challenge/features/blood_glucose/domain/repositories/blood_glucose_repository.dart';
 
 class GetBloodGlucoseSamples {
@@ -6,7 +6,7 @@ class GetBloodGlucoseSamples {
 
   GetBloodGlucoseSamples(this.repository);
 
-  Future<List<BloodGlucoseSampleModel>> call() async {
+  Future<List<BloodGlucoseSample>> call() async {
     return await repository.getBloodGlucoseSamples();
   }
 }
